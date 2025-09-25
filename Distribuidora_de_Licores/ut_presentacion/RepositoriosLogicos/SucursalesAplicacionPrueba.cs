@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using lib_dominio.Entidades;
 using lib_repositorios.Implementaciones;
 using lib_repositorios.Interfaces;
@@ -34,23 +33,18 @@ namespace ut_presentacion.RepositoriosLogicos
 
         public bool GuardarPrueba()
         {
-            // Entidad mínima válida
-            suc = EntidadesNucleo.Sucursales() ?? new Sucursales();
-
-            suc.SucursalId = 0;
-            var suf = DateTime.Now.ToString("yyyyMMddHHmmssfff");
-            // Nombre y ciudad legibles y únicos
-            suc.Nombre = string.IsNullOrWhiteSpace(suc.Nombre) ? $"Sucursal UT {suf}" : suc.Nombre.Trim();
-            suc.Ciudad = string.IsNullOrWhiteSpace(suc.Ciudad) ? "Medellín" : suc.Ciudad.Trim();
-            suc.Direccion = string.IsNullOrWhiteSpace(suc.Direccion) ? $"Calle {suf} # 1-2" : suc.Direccion.Trim();
-
-            // recortes por longitudes máximas
-            if (suc.Nombre.Length > 80) suc.Nombre = suc.Nombre[..80];
-            if (suc.Ciudad.Length > 80) suc.Ciudad = suc.Ciudad[..80];
-            if (suc.Direccion.Length > 120) suc.Direccion = suc.Direccion[..120];
+            // Dato mínimo válido (la validación está en la implementación)
+            suc = new Sucursales
+            {
+                SucursalId = 0,
+                Nombre = "Sucursal UT " + DateTime.Now.ToString("yyyyMMddHHmmssfff"),
+                Ciudad = "Medellín",
+                Direccion = "Calle 10 # 20-30"
+            };
 
             sucApp.Guardar(suc);
 
+            // Si el tracking no reflejó el Id, lo recupero
             if (suc.SucursalId == 0)
             {
                 var rec = iConexion.Sucursales!.FirstOrDefault(x => x.Nombre == suc.Nombre && x.Ciudad == suc.Ciudad);
@@ -61,8 +55,7 @@ namespace ut_presentacion.RepositoriosLogicos
 
         public bool ModificarPrueba()
         {
-            // Cambiar dirección (datos existentes en la tabla)
-            suc!.Direccion = "Dirección actualizada " + DateTime.Now.ToString("HHmmss");
+            suc!.Direccion = "Dirección actualizada";
             sucApp.Modificar(suc);
             return true;
         }
@@ -70,7 +63,6 @@ namespace ut_presentacion.RepositoriosLogicos
         public bool ListarPrueba()
         {
             var lista = sucApp.Listar();
-            // que exista y que esté la que acabamos de crear (sin depender del Take(20))
             return lista.Count > 0 && iConexion.Sucursales!.Any(x => x.SucursalId == suc!.SucursalId);
         }
 

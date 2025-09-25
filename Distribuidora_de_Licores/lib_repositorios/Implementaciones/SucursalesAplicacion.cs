@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using lib_dominio.Entidades;
+﻿using lib_dominio.Entidades;
 using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,102 +6,24 @@ namespace lib_repositorios.Implementaciones
 {
     public class SucursalesAplicacion : ISucursalesAplicacion
     {
-        private IConexion? IConexion;
+        private IConexion? IConexion = null;
 
         public SucursalesAplicacion(IConexion iConexion)
         {
-            IConexion = iConexion;
+            this.IConexion = iConexion;
         }
 
         public void Configurar(string StringConexion)
         {
-            IConexion!.StringConexion = StringConexion;
+            this.IConexion!.StringConexion = StringConexion;
         }
 
-        public Sucursales? Guardar(Sucursales? entidad)
+        // Validaciones básicas (fiel al ejemplo)
+        public static bool Validar(Sucursales entidad)
         {
-            ValidarEntidadParaGuardar(entidad!);
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
 
-            Normalizar(entidad!);
-
-            // Duplicado por (Nombre, Ciudad) — case-insensitive
-            if (IConexion!.Sucursales!.Any(s =>
-                  s.Nombre.ToLower() == entidad.Nombre.ToLower() &&
-                  s.Ciudad.ToLower() == entidad.Ciudad.ToLower()))
-                throw new Exception("Sucursal duplicada (Nombre + Ciudad).");
-
-            IConexion.Sucursales!.Add(entidad);
-            IConexion.SaveChanges();
-            return entidad;
-        }
-
-        public Sucursales? Modificar(Sucursales? entidad)
-        {
-            ValidarEntidadParaModificar(entidad!);
-
-            Normalizar(entidad!);
-
-            if (IConexion!.Sucursales!.Any(s =>
-                    s.SucursalId != entidad.SucursalId &&
-                    s.Nombre.ToLower() == entidad.Nombre.ToLower() &&
-                    s.Ciudad.ToLower() == entidad.Ciudad.ToLower()))
-                throw new Exception("Sucursal duplicada (Nombre + Ciudad).");
-
-            var entry = IConexion!.Entry<Sucursales>(entidad);
-            entry.State = EntityState.Modified;
-            IConexion.SaveChanges();
-            return entidad;
-        }
-
-        public Sucursales? Borrar(Sucursales? entidad)
-        {
-            if (entidad == null) throw new Exception("lbFaltaInformacion");
-            if (entidad.SucursalId == 0) throw new Exception("lbNoSeGuardo");
-
-            IConexion!.Sucursales!.Remove(entidad);
-            IConexion.SaveChanges();
-            return entidad;
-        }
-
-        public List<Sucursales> Listar()
-        {
-            return IConexion!.Sucursales!
-                .OrderBy(s => s.SucursalId)
-                .Take(20)
-                .ToList();
-        }
-
-        public List<Sucursales> PorNombre(Sucursales? entidad)
-        {
-            var filtro = entidad?.Nombre?.Trim();
-            if (string.IsNullOrWhiteSpace(filtro))
-                return Listar();
-
-            return IConexion!.Sucursales!
-                .Where(s => s.Nombre.Contains(filtro))
-                .OrderBy(s => s.SucursalId)
-                .Take(20)
-                .ToList();
-        }
-
-        // ---------- Validaciones / Reglas ----------
-
-        private static void ValidarEntidadParaGuardar(Sucursales entidad)
-        {
-            if (entidad == null) throw new Exception("lbFaltaInformacion");
-            if (entidad.SucursalId != 0) throw new Exception("lbYaSeGuardo");
-            ValidarCampos(entidad);
-        }
-
-        private static void ValidarEntidadParaModificar(Sucursales entidad)
-        {
-            if (entidad == null) throw new Exception("lbFaltaInformacion");
-            if (entidad.SucursalId == 0) throw new Exception("lbNoSeGuardo");
-            ValidarCampos(entidad);
-        }
-
-        private static void ValidarCampos(Sucursales entidad)
-        {
             if (string.IsNullOrWhiteSpace(entidad.Nombre))
                 throw new Exception("El Nombre es obligatorio.");
             if (string.IsNullOrWhiteSpace(entidad.Ciudad))
@@ -112,19 +31,71 @@ namespace lib_repositorios.Implementaciones
             if (string.IsNullOrWhiteSpace(entidad.Direccion))
                 throw new Exception("La Dirección es obligatoria.");
 
-            if (entidad.Nombre.Trim().Length > 80)
-                throw new Exception("El Nombre excede 80 caracteres.");
-            if (entidad.Ciudad.Trim().Length > 80)
-                throw new Exception("La Ciudad excede 80 caracteres.");
-            if (entidad.Direccion.Trim().Length > 120)
-                throw new Exception("La Dirección excede 120 caracteres.");
+            if (entidad.Nombre.Length > 80)
+                throw new Exception("El Nombre no puede superar 80 caracteres.");
+            if (entidad.Ciudad.Length > 80)
+                throw new Exception("La Ciudad no puede superar 80 caracteres.");
+            if (entidad.Direccion.Length > 120)
+                throw new Exception("La Dirección no puede superar 120 caracteres.");
+
+            return true;
         }
 
-        private static void Normalizar(Sucursales entidad)
+        public Sucursales? Guardar(Sucursales? entidad)
         {
-            entidad.Nombre = entidad.Nombre.Trim();
-            entidad.Ciudad = entidad.Ciudad.Trim();
-            entidad.Direccion = entidad.Direccion.Trim();
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+            if (entidad.SucursalId != 0)
+                throw new Exception("lbYaSeGuardo");
+
+            if (!Validar(entidad))
+                throw new Exception("lbNoEsValido");
+
+            this.IConexion!.Sucursales!.Add(entidad);
+            this.IConexion.SaveChanges();
+            return entidad;
+        }
+
+        public Sucursales? Modificar(Sucursales? entidad)
+        {
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+            if (entidad.SucursalId == 0)
+                throw new Exception("lbNoSeGuardo");
+
+            if (!Validar(entidad))
+                throw new Exception("lbNoEsValido");
+
+            var entry = this.IConexion!.Entry<Sucursales>(entidad);
+            entry.State = EntityState.Modified;
+            this.IConexion.SaveChanges();
+            return entidad;
+        }
+
+        public Sucursales? Borrar(Sucursales? entidad)
+        {
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+            if (entidad.SucursalId == 0)
+                throw new Exception("lbNoSeGuardo");
+
+            this.IConexion!.Sucursales!.Remove(entidad);
+            this.IConexion.SaveChanges();
+            return entidad;
+        }
+
+        public List<Sucursales> Listar()
+        {
+            return this.IConexion!.Sucursales!.Take(20).ToList();
+        }
+
+        public List<Sucursales> PorNombre(Sucursales? filtro)
+        {
+            var nombre = filtro?.Nombre ?? string.Empty;
+            return this.IConexion!.Sucursales!
+                     .Where(x => x.Nombre.Contains(nombre))
+                     .Take(20)
+                     .ToList();
         }
     }
 }
