@@ -18,23 +18,25 @@ namespace lib_repositorios.Implementaciones
             this.IConexion!.StringConexion = StringConexion;
         }
 
-       
+
         public static bool Validar(Proveedores entidad)
         {
             if (entidad == null)
-                throw new Exception("le falta info");
+                throw new Exception("lbFaltaInformacion");
+
+            //operaciones
 
             if (string.IsNullOrWhiteSpace(entidad.Nombre))
                 throw new Exception("el nombre es obligatorio");
 
             if (entidad.Nombre.Length > 100)
-                throw new Exception("supera los 100 caracteres");
+                throw new Exception("el nombre supera 100 caracteres");
 
-            if (entidad.Ciudad != null && entidad.Ciudad.Length > 80)
-                throw new Exception("supera los 80 caracteres");
+            if (!string.IsNullOrEmpty(entidad.Ciudad) && entidad.Ciudad.Length > 80)
+                throw new Exception("la ciudad supera los 80 caracteres");
 
-            if (entidad.Telefono != null && entidad.Telefono.Length > 30)
-                throw new Exception("supera llos 30 caracteres");
+            if (!string.IsNullOrEmpty(entidad.Telefono) && entidad.Telefono.Length > 30)
+                throw new Exception("el telefono suepra los 30 caracteres");
 
             return true;
         }
@@ -42,12 +44,12 @@ namespace lib_repositorios.Implementaciones
         public Proveedores? Guardar(Proveedores? entidad)
         {
             if (entidad == null)
-                throw new Exception("le falta info");
+                throw new Exception("lbFaltaInformacion");
             if (entidad.ProveedorId != 0)
-                throw new Exception("guardado");
+                throw new Exception("lbYaSeGuardo");
 
             if (!Validar(entidad))
-                throw new Exception("no es valido");
+                throw new Exception("lbNoEsValido");
 
             this.IConexion!.Proveedores!.Add(entidad);
             this.IConexion.SaveChanges();
@@ -57,12 +59,12 @@ namespace lib_repositorios.Implementaciones
         public Proveedores? Modificar(Proveedores? entidad)
         {
             if (entidad == null)
-                throw new Exception("le falta info");
+                throw new Exception("lbFaltaInformacion");
             if (entidad.ProveedorId == 0)
-                throw new Exception("no se guardo");
+                throw new Exception("lbNoSeGuardo");
 
             if (!Validar(entidad))
-                throw new Exception("no es valido");
+                throw new Exception("lbNoEsValido");
 
             var entry = this.IConexion!.Entry<Proveedores>(entidad);
             entry.State = EntityState.Modified;
@@ -73,9 +75,9 @@ namespace lib_repositorios.Implementaciones
         public Proveedores? Borrar(Proveedores? entidad)
         {
             if (entidad == null)
-                throw new Exception("le falta info");
+                throw new Exception("lbFaltaInformacion");
             if (entidad.ProveedorId == 0)
-                throw new Exception("no se guardo");
+                throw new Exception("lbNoSeGuardo");
 
             this.IConexion!.Proveedores!.Remove(entidad);
             this.IConexion.SaveChanges();
@@ -87,7 +89,6 @@ namespace lib_repositorios.Implementaciones
             return this.IConexion!.Proveedores!.Take(20).ToList();
         }
 
-       
         public List<Proveedores> PorNombreOCiudad(Proveedores? filtro)
         {
             var nombre = filtro?.Nombre ?? string.Empty;
@@ -103,5 +104,6 @@ namespace lib_repositorios.Implementaciones
 
             return q.Take(20).ToList();
         }
+
     }
 }

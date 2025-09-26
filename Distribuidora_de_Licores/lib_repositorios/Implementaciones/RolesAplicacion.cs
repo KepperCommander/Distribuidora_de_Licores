@@ -51,9 +51,9 @@ namespace lib_repositorios.Implementaciones
         public Roles? Borrar(Roles? entidad)
         {
             if (entidad == null)
-                throw new Exception("le falta info");
+                throw new Exception("lbFaltaInformacion");
             if (entidad.RolId == 0)
-                throw new Exception("no se guardo");
+                throw new Exception("lbNoSeGuardo");
 
             this.IConexion!.Roles!.Remove(entidad);
             this.IConexion!.SaveChanges();
@@ -74,19 +74,24 @@ namespace lib_repositorios.Implementaciones
 
         private static void ValidarEntidadParaGuardar(Roles entidad)
         {
-            if (entidad == null) throw new Exception("le falta info");
-            if (entidad.RolId != 0) throw new Exception("guadado");
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+            if (entidad.RolId != 0)
+                throw new Exception("lbYaSeGuardo");
 
             ValidarCampos(entidad);
         }
 
         private static void ValidarEntidadParaModificar(Roles entidad)
         {
-            if (entidad == null) throw new Exception("le falta info");
-            if (entidad.RolId == 0) throw new Exception("l¿guardado");
+            if (entidad == null)
+                throw new Exception("lbFaltaInformacion");
+            if (entidad.RolId == 0)
+                throw new Exception("lbNoSeGuardo");
 
             ValidarCampos(entidad);
         }
+
 
         private static void ValidarCampos(Roles entidad)
         {

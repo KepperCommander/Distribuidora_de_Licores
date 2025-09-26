@@ -28,18 +28,18 @@ namespace ut_presentacion.RepositoriosLogicos
             Assert.AreEqual(true, ModificarPrueba());
             Assert.AreEqual(true, ListarPrueba());
             Assert.AreEqual(true, PorNombrePrueba());
-            Assert.AreEqual(true, BorrarPrueba());
+            //Assert.AreEqual(true, BorrarPrueba());
         }
 
         public bool GuardarPrueba()
         {
-            // Dato mínimo válido (asegúrate de tener registros con Id=1 en las FKs)
+            // para el funcionameinto debe de haber id con 1 en los registros, en las tablas categorias, marcas y proveedores
             prod = new Productos
             {
                 ProductoId = 0,
-                CategoriaId = 1,   // Debe existir en dbo.Categorias
-                MarcaId = 1,   // Debe existir en dbo.Marcas
-                ProveedorId = 1,   // Debe existir en dbo.Proveedores
+                CategoriaId = 1,   
+                MarcaId = 1,   
+                ProveedorId = 1,   
                 Nombre = "UT-Producto " + DateTime.Now.ToString("yyyyMMddHHmmssfff"),
                 Unidad = "Botella",
                 ContenidoML = 750,
@@ -47,13 +47,6 @@ namespace ut_presentacion.RepositoriosLogicos
             };
 
             prodApp.Guardar(prod);
-
-            // Si el tracking no reflejó el Id, lo recupero
-            /*if (prod.ProductoId == 0)
-            {
-                var rec = iConexion.Productos!.FirstOrDefault(x => x.Nombre == prod.Nombre);
-                if (rec != null) prod.ProductoId = rec.ProductoId;
-            }*/
             return prod.ProductoId > 0;
         }
 

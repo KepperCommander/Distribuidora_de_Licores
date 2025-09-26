@@ -21,7 +21,9 @@ namespace lib_repositorios.Implementaciones
         public static bool Validar(Marcas entidad)
         {
             if (entidad == null)
-                throw new Exception("le falta info");
+                throw new Exception("lbFaltaInformacion");
+
+            //operaciones
 
             if (string.IsNullOrWhiteSpace(entidad.Nombre))
                 throw new Exception("el nombre de la marca es obligatorio");
@@ -35,12 +37,12 @@ namespace lib_repositorios.Implementaciones
         public Marcas? Guardar(Marcas? entidad)
         {
             if (entidad == null)
-                throw new Exception("le falto info");
+                throw new Exception("lbFaltaInformacion");
             if (entidad.MarcaId != 0)
-                throw new Exception("ya esta guardado");
+                throw new Exception("lbYaGuardado");
 
             if (!Validar(entidad))
-                throw new Exception("no es valido");
+                throw new Exception("lbNoEsValido");
 
             this.IConexion!.Marcas!.Add(entidad);
             this.IConexion.SaveChanges();
@@ -50,12 +52,12 @@ namespace lib_repositorios.Implementaciones
         public Marcas? Modificar(Marcas? entidad)
         {
             if (entidad == null)
-                throw new Exception("le falta info");
+                throw new Exception("lbFaltaInformacion");
             if (entidad.MarcaId == 0)
-                throw new Exception("no se guardo");
+                throw new Exception("lbNoSeGuardo");
 
             if (!Validar(entidad))
-                throw new Exception("no es valido");
+                throw new Exception("lbNoEsValido");
 
             var entry = this.IConexion!.Entry<Marcas>(entidad);
             entry.State = EntityState.Modified;
@@ -66,9 +68,9 @@ namespace lib_repositorios.Implementaciones
         public Marcas? Borrar(Marcas? entidad)
         {
             if (entidad == null)
-                throw new Exception("falto info");
+                throw new Exception("lbFaltaInformacion");
             if (entidad.MarcaId == 0)
-                throw new Exception("no se guardo");
+                throw new Exception("lbNoSeGuardo");
 
             this.IConexion!.Marcas!.Remove(entidad);
             this.IConexion.SaveChanges();

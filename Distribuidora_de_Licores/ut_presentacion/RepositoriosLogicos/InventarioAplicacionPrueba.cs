@@ -43,13 +43,6 @@ namespace ut_presentacion.RepositoriosLogicos
 
             
             inv = invApp.Guardar(inv);
-
-            // posible error del entity framework no asig id, se recarga de la bd
-            if (inv!.InventarioId == 0)
-            {
-                inv = iConexion.Inventario!
-                       .FirstOrDefault(x => x.SucursalId == inv.SucursalId && x.ProductoId == inv.ProductoId);
-            }
             return inv != null && inv.InventarioId > 0;
         }
 

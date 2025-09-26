@@ -21,7 +21,9 @@ namespace lib_repositorios.Implementaciones
      
         public static bool Validar(Inventario entidad)
         {
-            if (entidad == null) throw new Exception("le falta info");
+            if (entidad == null) throw new Exception("lbFaltaInformacion");
+
+            //operaciones
             if (entidad.SucursalId <= 0) throw new Exception("el id de la sucrusal es obligatorio");
             if (entidad.ProductoId <= 0) throw new Exception("el id del producto es obligatorio");
             if (entidad.Stock < 0) throw new Exception("el stock no puede ser negativo");
@@ -31,7 +33,7 @@ namespace lib_repositorios.Implementaciones
         
         public Inventario? Guardar(Inventario? entidad)
         {
-            if (entidad == null) throw new Exception("le falta info");
+            if (entidad == null) throw new Exception("lbFaltaInformacion");
             if (entidad.InventarioId != 0) throw new Exception("ya se guardo");
             if (!Validar(entidad)) throw new Exception("no valido");
 
@@ -58,9 +60,9 @@ namespace lib_repositorios.Implementaciones
        
         public Inventario? GuardarEstricto(Inventario? entidad)
         {
-            if (entidad == null) throw new Exception("le falta info");
+            if (entidad == null) throw new Exception("lbFaltaInformacion");
             if (entidad.InventarioId != 0) throw new Exception("ya se guardo");
-            if (!Validar(entidad)) throw new Exception("no valido");
+            if (!Validar(entidad)) throw new Exception("lbNoEsValido");
 
             bool existe = this.IConexion!.Inventario!
                 .Any(x => x.SucursalId == entidad.SucursalId &&
@@ -74,8 +76,8 @@ namespace lib_repositorios.Implementaciones
 
         public Inventario? Modificar(Inventario? entidad)
         {
-            if (entidad == null) throw new Exception("le falta info");
-            if (entidad.InventarioId == 0) throw new Exception("no se ha guardado");
+            if (entidad == null) throw new Exception("lbFaltaInformacion");
+            if (entidad.InventarioId == 0) throw new Exception("lbNoSeGuardo");
             if (!Validar(entidad)) throw new Exception("ni es valido");
 
             var entry = this.IConexion!.Entry<Inventario>(entidad);
@@ -86,8 +88,8 @@ namespace lib_repositorios.Implementaciones
 
         public Inventario? Borrar(Inventario? entidad)
         {
-            if (entidad == null) throw new Exception("le falta info");
-            if (entidad.InventarioId == 0) throw new Exception("no se guardo");
+            if (entidad == null) throw new Exception("lbFaltaInformacion");
+            if (entidad.InventarioId == 0) throw new Exception("lbNoSeGuardo");
 
             this.IConexion!.Inventario!.Remove(entidad);
             this.IConexion.SaveChanges();

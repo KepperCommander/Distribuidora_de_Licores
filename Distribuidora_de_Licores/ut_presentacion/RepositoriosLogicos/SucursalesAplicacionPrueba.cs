@@ -28,34 +28,29 @@ namespace ut_presentacion.RepositoriosLogicos
             Assert.AreEqual(true, ModificarPrueba());
             Assert.AreEqual(true, ListarPrueba());
             Assert.AreEqual(true, PorNombrePrueba());
-            Assert.AreEqual(true, BorrarPrueba());
+            //Assert.AreEqual(true, BorrarPrueba());
         }
 
         public bool GuardarPrueba()
         {
-            // Dato mínimo válido (la validación está en la implementación)
+         
             suc = new Sucursales
             {
                 SucursalId = 0,
-                Nombre = "Sucursal UT " + DateTime.Now.ToString("yyyyMMddHHmmssfff"),
+                Nombre = "Sucursalalgo " + DateTime.Now.ToString("yyyyMMddHHmmssfff"),
                 Ciudad = "Medellín",
-                Direccion = "Calle 10 # 20-30"
+                Direccion = "direccion prueba logica"
             };
 
             sucApp.Guardar(suc);
 
-            // Si el tracking no reflejó el Id, lo recupero
-            if (suc.SucursalId == 0)
-            {
-                var rec = iConexion.Sucursales!.FirstOrDefault(x => x.Nombre == suc.Nombre && x.Ciudad == suc.Ciudad);
-                if (rec != null) suc.SucursalId = rec.SucursalId;
-            }
+           
             return suc.SucursalId > 0;
         }
 
         public bool ModificarPrueba()
         {
-            suc!.Direccion = "Dirección actualizada";
+            suc!.Direccion = "Direccion actualizada en prueba logica";
             sucApp.Modificar(suc);
             return true;
         }

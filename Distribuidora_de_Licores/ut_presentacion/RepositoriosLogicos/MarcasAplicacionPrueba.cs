@@ -40,13 +40,6 @@ namespace ut_presentacion.RepositoriosLogicos
             };
 
             marcasApp.Guardar(marca);
-
-            
-            /*if (marca.MarcaId == 0)
-            {
-                var rec = iConexion.Marcas!.FirstOrDefault(x => x.Nombre == marca.Nombre);
-                if (rec != null) marca.MarcaId = rec.MarcaId;
-            }*/
             return marca.MarcaId > 0;
         }
 

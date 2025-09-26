@@ -24,6 +24,7 @@ namespace lib_repositorios.Implementaciones
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
 
+            //OPERACIONES
             // FKs requeridas 
             if (entidad.CategoriaId <= 0)
                 throw new Exception("CategoriaId es obligatorio.");
@@ -56,27 +57,28 @@ namespace lib_repositorios.Implementaciones
         public Productos? Guardar(Productos? entidad)
         {
             if (entidad == null)
-                throw new Exception("le falta info");
+                throw new Exception("lbFaltaInformacion");
             if (entidad.ProductoId != 0)
-                throw new Exception("se guardo ");
+                throw new Exception("lbYaSeGuardo");
 
             if (!Validar(entidad))
-                throw new Exception("no es valido");
+                throw new Exception("lbNoEsValido");
 
             this.IConexion!.Productos!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
         }
 
+
         public Productos? Modificar(Productos? entidad)
         {
             if (entidad == null)
-                throw new Exception("le falta info");
+                throw new Exception("lbFaltaInformacion");
             if (entidad.ProductoId == 0)
-                throw new Exception("no se guardo");
+                throw new Exception("lbNoSeGuardo");
 
             if (!Validar(entidad))
-                throw new Exception("no es valido");
+                throw new Exception("lbNoEsValido");
 
             var entry = this.IConexion!.Entry<Productos>(entidad);
             entry.State = EntityState.Modified;
@@ -87,9 +89,9 @@ namespace lib_repositorios.Implementaciones
         public Productos? Borrar(Productos? entidad)
         {
             if (entidad == null)
-                throw new Exception("le falta info");
+                throw new Exception("lbFaltaInformacion");
             if (entidad.ProductoId == 0)
-                throw new Exception("no se guardo");
+                throw new Exception("lbNoSeGuardo");
 
             this.IConexion!.Productos!.Remove(entidad);
             this.IConexion.SaveChanges();

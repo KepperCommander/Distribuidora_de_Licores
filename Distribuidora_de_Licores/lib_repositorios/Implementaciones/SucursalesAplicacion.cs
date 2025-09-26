@@ -18,25 +18,26 @@ namespace lib_repositorios.Implementaciones
             this.IConexion!.StringConexion = StringConexion;
         }
 
-        // Validaciones básicas (fiel al ejemplo)
+       
         public static bool Validar(Sucursales entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
 
+            //operaciones
             if (string.IsNullOrWhiteSpace(entidad.Nombre))
-                throw new Exception("El Nombre es obligatorio.");
+                throw new Exception("el nombre es obligatorio");
             if (string.IsNullOrWhiteSpace(entidad.Ciudad))
-                throw new Exception("La Ciudad es obligatoria.");
+                throw new Exception("la ciudad es obligatoria");
             if (string.IsNullOrWhiteSpace(entidad.Direccion))
-                throw new Exception("La Dirección es obligatoria.");
+                throw new Exception("la direccion es obligatoria ");
 
             if (entidad.Nombre.Length > 80)
-                throw new Exception("El Nombre no puede superar 80 caracteres.");
+                throw new Exception("supera lo 80 caracteres el nombre");
             if (entidad.Ciudad.Length > 80)
-                throw new Exception("La Ciudad no puede superar 80 caracteres.");
+                throw new Exception("supera los 60 caracteres la ciudad");
             if (entidad.Direccion.Length > 120)
-                throw new Exception("La Dirección no puede superar 120 caracteres.");
+                throw new Exception("supera los 120 caracteres la direccion");
 
             return true;
         }

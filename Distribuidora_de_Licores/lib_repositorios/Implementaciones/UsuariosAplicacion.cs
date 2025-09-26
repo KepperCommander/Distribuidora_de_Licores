@@ -113,6 +113,9 @@ namespace lib_repositorios.Implementaciones
 
         private static void ValidarCampos(Usuarios entidad)
         {
+
+
+            //OPERACIONES
             // obliga a utilizar todo, que tenga menos de 50 y que no tenga espacios
             if (string.IsNullOrWhiteSpace(entidad.Username))
                 throw new Exception("el username es obligatorio");

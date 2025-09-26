@@ -38,17 +38,10 @@ namespace ut_presentacion.RepositoriosLogicos
             rol = EntidadesNucleo.Roles() ?? new Roles();
             rol.RolId = 0;
             var stamp = DateTime.Now.ToString("yyyyMMddHHmmssfff");
-            rol.Nombre = $"estandarRol--{stamp}";     // < 50 chars y único
-            rol.Descripcion ??= "Rol de prueba";
+            rol.Nombre = "estandarRol--{stamp}";     
+            rol.Descripcion ??= "Rol de prueba logica";
 
             rolesApp.Guardar(rol);
-
-            //si no tiene rolid se busca por nombre
-            if (rol.RolId == 0)
-            {
-                var rec = iConexion.Roles!.FirstOrDefault(r => r.Nombre == rol.Nombre);
-                if (rec != null) rol.RolId = rec.RolId;
-            }
             return rol.RolId > 0;
         }
 

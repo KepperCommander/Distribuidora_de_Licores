@@ -45,13 +45,6 @@ namespace ut_presentacion.RepositoriosLogicos
             };
 
             empApp.Guardar(emp);
-
-           
-            if (emp.EmpleadoId == 0)
-            {
-                var rec = iConexion.Empleados!.FirstOrDefault(x => x.Nombres == emp.Nombres && x.Apellidos == emp.Apellidos);
-                if (rec != null) emp.EmpleadoId = rec.EmpleadoId;
-            }
             return emp.EmpleadoId > 0;
         }
 

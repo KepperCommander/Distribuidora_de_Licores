@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución",
 		secrets.json = secrets.json
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asp_servicios", "asp_servicios\asp_servicios.csproj", "{63A44006-A3F6-4BE7-9E1F-76ACEC4C5724}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{318B80B3-4797-45B7-87DB-8C1914C3C5EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{318B80B3-4797-45B7-87DB-8C1914C3C5EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{318B80B3-4797-45B7-87DB-8C1914C3C5EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63A44006-A3F6-4BE7-9E1F-76ACEC4C5724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63A44006-A3F6-4BE7-9E1F-76ACEC4C5724}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63A44006-A3F6-4BE7-9E1F-76ACEC4C5724}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63A44006-A3F6-4BE7-9E1F-76ACEC4C5724}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{0116AC19-269D-419C-B9C8-A5BC7636810C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{E87D4B5A-9C88-4DCE-A1B6-416CB04D8EAD} = {B203AEB3-FEB3-4379-A183-9812705A262A}
 		{318B80B3-4797-45B7-87DB-8C1914C3C5EF} = {2CBC6CF0-8E26-4FD7-B440-8C184FDBB4C4}
+		{63A44006-A3F6-4BE7-9E1F-76ACEC4C5724} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {998E0267-EE1F-4A04-8860-0666993DF0E7}

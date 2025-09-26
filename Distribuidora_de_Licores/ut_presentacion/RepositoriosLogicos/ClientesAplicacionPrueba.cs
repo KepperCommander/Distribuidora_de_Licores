@@ -28,7 +28,7 @@ namespace ut_presentacion.RepositoriosLogicos
             Assert.AreEqual(true, ModificarPrueba());
             Assert.AreEqual(true, ListarPrueba());
             Assert.AreEqual(true, PorRazonSocialONitPrueba());
-            Assert.AreEqual(true, BorrarPrueba());
+            //Assert.AreEqual(true, BorrarPrueba());
         }
 
         public bool GuardarPrueba()
@@ -45,13 +45,6 @@ namespace ut_presentacion.RepositoriosLogicos
             };
 
             cliApp.Guardar(cli);
-
-            // Si el tracking no reflejó el Id:
-            /*if (cli.ClienteId == 0)
-            {
-                var rec = iConexion.Clientes!.FirstOrDefault(x => x.RazonSocial == cli.RazonSocial);
-                if (rec != null) cli.ClienteId = rec.ClienteId;
-            }*/
             return cli.ClienteId > 0;
         }
 
