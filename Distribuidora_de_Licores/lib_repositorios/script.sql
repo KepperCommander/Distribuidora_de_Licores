@@ -43,14 +43,14 @@ INSERT INTO Usuarios (RolId, Username, HashPass, Activo) VALUES
 /* =========================================================
    3) SUCURSALES
    ========================================================= */
-CREATE TABLE dbo.Sucursales(
+CREATE TABLE Sucursales(
     SucursalId INT IDENTITY(1,1) PRIMARY KEY,
     Nombre     VARCHAR(80) NOT NULL,
     Ciudad     VARCHAR(80) NOT NULL,
     Direccion  VARCHAR(120) NOT NULL
 );
 
-INSERT INTO dbo.Sucursales (Nombre, Ciudad, Direccion) VALUES
+INSERT INTO Sucursales (Nombre, Ciudad, Direccion) VALUES
 ('Central Medellín','Medellín','Cra 50 #45-10'),
 ('Sur Envigado','Envigado','Cl 30 Sur #44-21'),
 ('Norte Bello','Bello','Av 50 #40-05'),
@@ -60,7 +60,7 @@ INSERT INTO dbo.Sucursales (Nombre, Ciudad, Direccion) VALUES
 /* =========================================================
    4) EMPLEADOS
    ========================================================= */
-CREATE TABLE dbo.Empleados(
+CREATE TABLE Empleados(
     EmpleadoId INT IDENTITY(1,1) PRIMARY KEY,
     SucursalId INT NOT NULL REFERENCES dbo.Sucursales(SucursalId),
     UsuarioId  INT NULL REFERENCES dbo.Usuarios(UsuarioId),
@@ -69,7 +69,7 @@ CREATE TABLE dbo.Empleados(
     Cargo      VARCHAR(60) NOT NULL
 );
 
-INSERT INTO dbo.Empleados (SucursalId, UsuarioId, Nombres, Apellidos, Cargo) VALUES
+INSERT INTO Empleados (SucursalId, UsuarioId, Nombres, Apellidos, Cargo) VALUES
 (1,1,'Laura','Gómez','Administrador'),
 (1,2,'Carlos','Pérez','Vendedor'),
 (2,3,'Diana','López','Vendedor'),
@@ -79,14 +79,14 @@ INSERT INTO dbo.Empleados (SucursalId, UsuarioId, Nombres, Apellidos, Cargo) VAL
 /* =========================================================
    5) PROVEEDORES
    ========================================================= */
-CREATE TABLE dbo.Proveedores(
+CREATE TABLE Proveedores(
     ProveedorId INT IDENTITY(1,1) PRIMARY KEY,
     Nombre      VARCHAR(100) NOT NULL,
     Ciudad      VARCHAR(80) NULL,
     Telefono    VARCHAR(30) NULL
 );
 
-INSERT INTO dbo.Proveedores (Nombre, Ciudad, Telefono) VALUES
+INSERT INTO Proveedores (Nombre, Ciudad, Telefono) VALUES
 ('Destilería Andina','Medellín','3001112222'),
 ('Viñedos del Sol','Cali','3002223333'),
 ('Ron Caribe S.A.','Cartagena','3003334444'),
@@ -97,13 +97,13 @@ INSERT INTO dbo.Proveedores (Nombre, Ciudad, Telefono) VALUES
    6) CATEGORIAS
    ========================================================= */
 
-CREATE TABLE dbo.Categorias(
+CREATE TABLE Categorias(
     CategoriaId INT IDENTITY(1,1) PRIMARY KEY,
     Nombre      VARCHAR(60) NOT NULL,
     Descripcion VARCHAR(200) NULL
 );
 
-INSERT INTO dbo.Categorias (Nombre, Descripcion) VALUES
+INSERT INTO Categorias (Nombre, Descripcion) VALUES
 ('Cerveza','Bebidas fermentadas de cereal'),
 ('Vino','Vinos tinto, blanco y rosado'),
 ('Ron','Destilado de caña'),
@@ -114,12 +114,12 @@ INSERT INTO dbo.Categorias (Nombre, Descripcion) VALUES
    7) MARCAS
    ========================================================= */
 
-CREATE TABLE dbo.Marcas(
+CREATE TABLE Marcas(
     MarcaId INT IDENTITY(1,1) PRIMARY KEY,
     Nombre  VARCHAR(80) NOT NULL
 );
 
-INSERT INTO dbo.Marcas (Nombre) VALUES
+INSERT INTO Marcas (Nombre) VALUES
 ('Andina'),
 ('Sol Dorado'),
 ('Caribeño'),
@@ -130,7 +130,7 @@ INSERT INTO dbo.Marcas (Nombre) VALUES
    8) PRODUCTOS
    ========================================================= */
 
-CREATE TABLE dbo.Productos(
+CREATE TABLE Productos(
     ProductoId   INT IDENTITY(1,1) PRIMARY KEY,
     CategoriaId  INT NOT NULL REFERENCES dbo.Categorias(CategoriaId),
     MarcaId      INT NOT NULL REFERENCES dbo.Marcas(MarcaId),
@@ -141,7 +141,7 @@ CREATE TABLE dbo.Productos(
     PrecioUnit   DECIMAL(10,2) NOT NULL
 );
 
-INSERT INTO dbo.Productos (CategoriaId, MarcaId, ProveedorId, Nombre, Unidad, ContenidoML, PrecioUnit) VALUES
+INSERT INTO Productos (CategoriaId, MarcaId, ProveedorId, Nombre, Unidad, ContenidoML, PrecioUnit) VALUES
 (1,1,4,'Cerveza Andina Lager 330ml','SixPack',330,18000),
 (2,2,2,'Vino Sol Dorado Tinto 750ml','Botella',750,45000),
 (3,3,3,'Ron Caribeño Añejo 750ml','Botella',750,65000),
@@ -152,7 +152,7 @@ INSERT INTO dbo.Productos (CategoriaId, MarcaId, ProveedorId, Nombre, Unidad, Co
    9) CLIENTES
    ========================================================= */
 
-CREATE TABLE dbo.Clientes(
+CREATE TABLE Clientes(
     ClienteId  INT IDENTITY(1,1) PRIMARY KEY,
     Tipo       VARCHAR(20) NOT NULL, -- 'Minorista','Mayorista','Bar','Restaurante'
     RazonSocial VARCHAR(120) NOT NULL,
@@ -161,7 +161,7 @@ CREATE TABLE dbo.Clientes(
     Ciudad     VARCHAR(80) NULL
 );
 
-INSERT INTO dbo.Clientes (Tipo, RazonSocial, NIT, Telefono, Ciudad) VALUES
+INSERT INTO Clientes (Tipo, RazonSocial, NIT, Telefono, Ciudad) VALUES
 ('Bar','Bar La Esquina','900111001-1','3111111111','Medellín'),
 ('Restaurante','Restaurante El Roble','900222002-2','3222222222','Envigado'),
 ('Mayorista','Distribuciones Norte','900333003-3','3333333333','Bello'),
@@ -172,7 +172,7 @@ INSERT INTO dbo.Clientes (Tipo, RazonSocial, NIT, Telefono, Ciudad) VALUES
    10) INVENTARIO (por sucursal y producto)
    ========================================================= */
 
-CREATE TABLE dbo.Inventario(
+CREATE TABLE Inventario(
     InventarioId INT IDENTITY(1,1) PRIMARY KEY,
     SucursalId   INT NOT NULL REFERENCES dbo.Sucursales(SucursalId),
     ProductoId   INT NOT NULL REFERENCES dbo.Productos(ProductoId),
@@ -180,7 +180,7 @@ CREATE TABLE dbo.Inventario(
     UNIQUE(SucursalId, ProductoId)
 );
 
-INSERT INTO dbo.Inventario (SucursalId, ProductoId, Stock) VALUES
+INSERT INTO Inventario (SucursalId, ProductoId, Stock) VALUES
 (1,1,100),
 (1,2,60),
 (1,3,40),
@@ -191,7 +191,7 @@ INSERT INTO dbo.Inventario (SucursalId, ProductoId, Stock) VALUES
    11) LOTES
    ========================================================= */
 
-CREATE TABLE dbo.Lotes(
+CREATE TABLE Lotes(
     LoteId      INT IDENTITY(1,1) PRIMARY KEY,
     ProductoId  INT NOT NULL REFERENCES dbo.Productos(ProductoId),
     ProveedorId INT NOT NULL REFERENCES dbo.Proveedores(ProveedorId),
@@ -200,7 +200,7 @@ CREATE TABLE dbo.Lotes(
     Cantidad    INT NOT NULL
 );
 
-INSERT INTO dbo.Lotes (ProductoId, ProveedorId, CodigoLote, Vencimiento, Cantidad) VALUES
+INSERT INTO Lotes (ProductoId, ProveedorId, CodigoLote, Vencimiento, Cantidad) VALUES
 (1,4,'AND-330-20250901','2026-09-01',200),
 (2,2,'SOL-TIN-20250815','2028-08-15',100),
 (3,3,'CAR-ANJ-20250710','2027-07-10',80),
@@ -211,7 +211,7 @@ INSERT INTO dbo.Lotes (ProductoId, ProveedorId, CodigoLote, Vencimiento, Cantida
    12) COMPRAS (encabezado)
    ========================================================= */
 
-CREATE TABLE dbo.Compras(
+CREATE TABLE Compras(
     CompraId    INT IDENTITY(1,1) PRIMARY KEY,
     ProveedorId INT NOT NULL REFERENCES dbo.Proveedores(ProveedorId),
     SucursalId  INT NOT NULL REFERENCES dbo.Sucursales(SucursalId),
@@ -219,7 +219,7 @@ CREATE TABLE dbo.Compras(
     Total       DECIMAL(12,2) NOT NULL DEFAULT 0
 );
 
-INSERT INTO dbo.Compras (ProveedorId, SucursalId, Fecha, Total) VALUES
+INSERT INTO Compras (ProveedorId, SucursalId, Fecha, Total) VALUES
 (4,1,'2025-09-01',0),
 (2,1,'2025-09-05',0),
 (3,1,'2025-09-06',0),
@@ -230,7 +230,7 @@ INSERT INTO dbo.Compras (ProveedorId, SucursalId, Fecha, Total) VALUES
    13) COMPRA DETALLE
    ========================================================= */
 
-CREATE TABLE dbo.CompraDetalle(
+CREATE TABLE CompraDetalle(
     CompraDetId INT IDENTITY(1,1) PRIMARY KEY,
     CompraId    INT NOT NULL REFERENCES dbo.Compras(CompraId),
     ProductoId  INT NOT NULL REFERENCES dbo.Productos(ProductoId),
@@ -239,7 +239,7 @@ CREATE TABLE dbo.CompraDetalle(
     Subtotal    AS (Cantidad * PrecioCompra) PERSISTED
 );
 
-INSERT INTO dbo.CompraDetalle (CompraId, ProductoId, Cantidad, PrecioCompra) VALUES
+INSERT INTO CompraDetalle (CompraId, ProductoId, Cantidad, PrecioCompra) VALUES
 (1,1,120,2500),
 (2,2,60,28000),
 (3,3,40,42000),
@@ -260,7 +260,7 @@ CROSS APPLY (
    14) VENTAS (encabezado)
    ========================================================= */
 
-CREATE TABLE dbo.Ventas(
+CREATE TABLE Ventas(
     VentaId    INT IDENTITY(1,1) PRIMARY KEY,
     ClienteId  INT NOT NULL REFERENCES dbo.Clientes(ClienteId),
     SucursalId INT NOT NULL REFERENCES dbo.Sucursales(SucursalId),
@@ -269,7 +269,7 @@ CREATE TABLE dbo.Ventas(
     Total      DECIMAL(12,2) NOT NULL DEFAULT 0
 );
 
-INSERT INTO dbo.Ventas (ClienteId, SucursalId, EmpleadoId, Fecha, Total) VALUES
+INSERT INTO Ventas (ClienteId, SucursalId, EmpleadoId, Fecha, Total) VALUES
 (1,1,2,'2025-09-10',0),
 (2,1,2,'2025-09-10',0),
 (3,1,2,'2025-09-11',0),
@@ -280,7 +280,7 @@ INSERT INTO dbo.Ventas (ClienteId, SucursalId, EmpleadoId, Fecha, Total) VALUES
    15) VENTA DETALLE
    ========================================================= */
 
-CREATE TABLE dbo.VentaDetalle(
+CREATE TABLE VentaDetalle(
     VentaDetId  INT IDENTITY(1,1) PRIMARY KEY,
     VentaId     INT NOT NULL REFERENCES dbo.Ventas(VentaId),
     ProductoId  INT NOT NULL REFERENCES dbo.Productos(ProductoId),
@@ -289,9 +289,27 @@ CREATE TABLE dbo.VentaDetalle(
     Subtotal    AS (Cantidad * PrecioVenta) PERSISTED
 );
 
-INSERT INTO dbo.VentaDetalle (VentaId, ProductoId, Cantidad, PrecioVenta) VALUES
+INSERT INTO VentaDetalle (VentaId, ProductoId, Cantidad, PrecioVenta) VALUES
 (1,1,10,3000),
 (2,2,4,50000),
 (3,3,2,75000),
 (4,5,6,42000),
 (5,4,1,130000);
+
+/*
+_______________________
+
+LA TABLA DE AUDITORIAS
+--------------------------
+
+*/
+CREATE TABLE Auditoria(
+  AuditoriaId   INT IDENTITY(1,1) PRIMARY KEY,
+  Fecha         DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+  Usuario       VARCHAR(80) NULL,
+  Tabla         VARCHAR(128) NOT NULL,
+  Llave         VARCHAR(200) NOT NULL,   -- PK(s) de la fila afectada
+  Accion        VARCHAR(10) NOT NULL,    -- Added/Modified/Deleted
+  ValoresAntes  NVARCHAR(MAX) NULL,      -- JSON
+  ValoresDespues NVARCHAR(MAX) NULL      -- JSON
+);

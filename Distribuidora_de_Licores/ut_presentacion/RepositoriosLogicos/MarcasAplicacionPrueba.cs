@@ -4,6 +4,7 @@ using lib_repositorios.Implementaciones;
 using lib_repositorios.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ut_presentacion.Nucleo;
+using lib_dominio.Nucleo;
 
 namespace ut_presentacion.RepositoriosLogicos
 {

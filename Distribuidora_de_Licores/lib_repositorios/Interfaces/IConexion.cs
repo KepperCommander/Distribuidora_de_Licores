@@ -12,6 +12,7 @@ namespace lib_repositorios.Interfaces
     public interface IConexion
     {
         string? StringConexion { get; set; }
+         public string? UsuarioActual { get; set; }
 
         public DbSet<Roles>? Roles { get; set; }
         public DbSet<Usuarios>? Usuarios { get; set; }
@@ -28,6 +29,9 @@ namespace lib_repositorios.Interfaces
         public DbSet<CompraDetalle>? CompraDetalle { get; set; }
         public DbSet<Ventas>? Ventas { get; set; }
         public DbSet<VentaDetalle>? VentaDetalle { get; set; }
+
+        public DbSet<Auditoria>? Auditoria { get; set; }
+
 
         EntityEntry<T> Entry<T>(T entity) where T : class;
         int SaveChanges();

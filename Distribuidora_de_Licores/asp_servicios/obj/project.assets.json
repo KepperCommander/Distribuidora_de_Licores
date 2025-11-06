@@ -2884,7 +2884,6 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "lib_dominio >= 1.0.0",
       "lib_repositorios >= 1.0.0"
     ]
   },
@@ -2920,9 +2919,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\isara\\source\\repos\\KepperCommander\\Distribuidora_de_Licores\\Distribuidora_de_Licores\\lib_dominio\\lib_dominio.csproj": {
-              "projectPath": "C:\\Users\\isara\\source\\repos\\KepperCommander\\Distribuidora_de_Licores\\Distribuidora_de_Licores\\lib_dominio\\lib_dominio.csproj"
-            },
             "C:\\Users\\isara\\source\\repos\\KepperCommander\\Distribuidora_de_Licores\\Distribuidora_de_Licores\\lib_repositorios\\lib_repositorios.csproj": {
               "projectPath": "C:\\Users\\isara\\source\\repos\\KepperCommander\\Distribuidora_de_Licores\\Distribuidora_de_Licores\\lib_repositorios\\lib_repositorios.csproj"
             }

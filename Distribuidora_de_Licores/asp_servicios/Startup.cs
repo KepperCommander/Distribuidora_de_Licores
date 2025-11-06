@@ -1,12 +1,8 @@
-﻿using lib_repositorios.Implementaciones;
-using lib_repositorios.Interfaces;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
-using asp_servicios.Controllers;
-//using lib_aplicaciones.Implementaciones;
-using asp_servicios.Controllers;
+﻿using asp_servicios.Controllers;
 using lib_repositorios.Implementaciones;
 using lib_repositorios.Interfaces;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+
 namespace asp_servicios
 {
     public class Startup
@@ -15,9 +11,10 @@ namespace asp_servicios
         {
             Configuration = configuration;
         }
+
         public static IConfiguration? Configuration { set; get; }
-        public void ConfigureServices(WebApplicationBuilder builder, IServiceCollection
-       services)
+
+        public void ConfigureServices(WebApplicationBuilder builder, IServiceCollection services)
         {
             services.Configure<KestrelServerOptions>(x => {
                 x.AllowSynchronousIO = true;
@@ -26,13 +23,17 @@ namespace asp_servicios
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             //services.AddSwaggerGen();
+
             // Repositorios
             services.AddScoped<IConexion, Conexion>();
-            services.AddScoped<IRolesAplicacion, RolesAplicacion>();
+            services.AddScoped<IClientesAplicacion, ClientesAplicacion>();
+            services.AddScoped<IProductosAplicacion, ProductosAplicacion>();
+            services.AddScoped<TokenAplicacion, TokenAplicacion>();
             // Controladores
             services.AddScoped<TokenController, TokenController>();
             services.AddCors(o => o.AddDefaultPolicy(b => b.AllowAnyOrigin()));
         }
+
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

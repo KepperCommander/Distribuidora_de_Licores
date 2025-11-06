@@ -1,4 +1,10 @@
 C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\bin\Debug\net8.0\.msCoverageSourceRootsMapping_ut_presentacion
+C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\obj\Debug\net8.0\ut_presentacion.csproj.AssemblyReference.cache
+C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\obj\Debug\net8.0\ut_presentacion.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\obj\Debug\net8.0\ut_presentacion.AssemblyInfoInputs.cache
+C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\obj\Debug\net8.0\ut_presentacion.AssemblyInfo.cs
+C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\obj\Debug\net8.0\ut_presentacion.csproj.CoreCompileInputs.cache
+C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\obj\Debug\net8.0\ut_presentacion.sourcelink.json
 C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\bin\Debug\net8.0\testhost.dll
 C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\bin\Debug\net8.0\testhost.exe
 C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\bin\Debug\net8.0\es\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
@@ -216,12 +222,6 @@ C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuido
 C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\bin\Debug\net8.0\lib_dominio.pdb
 C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\bin\Debug\net8.0\lib_repositorios.pdb
 C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
-C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\obj\Debug\net8.0\ut_presentacion.csproj.AssemblyReference.cache
-C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\obj\Debug\net8.0\ut_presentacion.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\obj\Debug\net8.0\ut_presentacion.AssemblyInfoInputs.cache
-C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\obj\Debug\net8.0\ut_presentacion.AssemblyInfo.cs
-C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\obj\Debug\net8.0\ut_presentacion.csproj.CoreCompileInputs.cache
-C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\obj\Debug\net8.0\ut_presentacion.sourcelink.json
 C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\obj\Debug\net8.0\ut_prese.8597B677.Up2Date
 C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\obj\Debug\net8.0\ut_presentacion.dll
 C:\Users\isara\source\repos\KepperCommander\Distribuidora_de_Licores\Distribuidora_de_Licores\ut_presentacion\obj\Debug\net8.0\refint\ut_presentacion.dll

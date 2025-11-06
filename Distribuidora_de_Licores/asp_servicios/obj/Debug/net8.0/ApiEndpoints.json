@@ -1,8 +1,8 @@
 [
   {
-    "ContainingType": "asp_servicios.Controllers.RolesController",
+    "ContainingType": "asp_servicios.Controllers.ClientesController",
     "Method": "Borrar",
-    "RelativePath": "api/Roles/Borrar",
+    "RelativePath": "Clientes/Borrar",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -20,9 +20,9 @@
     ]
   },
   {
-    "ContainingType": "asp_servicios.Controllers.RolesController",
+    "ContainingType": "asp_servicios.Controllers.ClientesController",
     "Method": "Guardar",
-    "RelativePath": "api/Roles/Guardar",
+    "RelativePath": "Clientes/Guardar",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -40,9 +40,9 @@
     ]
   },
   {
-    "ContainingType": "asp_servicios.Controllers.RolesController",
+    "ContainingType": "asp_servicios.Controllers.ClientesController",
     "Method": "Listar",
-    "RelativePath": "api/Roles/Listar",
+    "RelativePath": "Clientes/Listar",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -60,9 +60,9 @@
     ]
   },
   {
-    "ContainingType": "asp_servicios.Controllers.RolesController",
+    "ContainingType": "asp_servicios.Controllers.ClientesController",
     "Method": "Modificar",
-    "RelativePath": "api/Roles/Modificar",
+    "RelativePath": "Clientes/Modificar",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -80,9 +80,129 @@
     ]
   },
   {
-    "ContainingType": "asp_servicios.Controllers.RolesController",
+    "ContainingType": "asp_servicios.Controllers.ClientesController",
     "Method": "PorNombre",
-    "RelativePath": "api/Roles/PorNombre",
+    "RelativePath": "Clientes/PorNombre",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "asp_servicios.Controllers.ProductosController",
+    "Method": "Borrar",
+    "RelativePath": "Productos/Borrar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "asp_servicios.Controllers.ProductosController",
+    "Method": "Guardar",
+    "RelativePath": "Productos/Guardar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "asp_servicios.Controllers.ProductosController",
+    "Method": "Listar",
+    "RelativePath": "Productos/Listar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "asp_servicios.Controllers.ProductosController",
+    "Method": "Modificar",
+    "RelativePath": "Productos/Modificar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "asp_servicios.Controllers.ProductosController",
+    "Method": "PorNombre",
+    "RelativePath": "Productos/PorNombre",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "asp_servicios.Controllers.TokenController",
+    "Method": "Llave",
+    "RelativePath": "Token/Llave",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

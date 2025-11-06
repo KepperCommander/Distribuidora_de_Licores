@@ -3,6 +3,8 @@ using lib_repositorios.Implementaciones;
 using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ut_presentacion.Nucleo;
+using lib_dominio.Nucleo;
+
 
 namespace ut_presentacion.Repositorios
 {
@@ -25,7 +27,7 @@ namespace ut_presentacion.Repositorios
             Assert.AreEqual(true, Guardar());
             Assert.AreEqual(true, Modificar());
             Assert.AreEqual(true, Listar());
-            //Assert.AreEqual(true, Borrar());
+            Assert.AreEqual(true, Borrar());
         }
 
         public bool Listar()
